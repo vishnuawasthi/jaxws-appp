@@ -1,0 +1,45 @@
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from EmployeeServiceImplService WSDL service -->
+
+  <service name="EmployeeServiceImpl" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://service.app.com"/>
+      <parameter name="wsdlServiceElement" value="EmployeeServiceImplService"/>
+      <parameter name="schemaQualified" value="http://service.app.com,http://dto.app.com"/>
+      <parameter name="wsdlServicePort" value="EmployeeServiceImpl"/>
+      <parameter name="className" value="com.app.service.EmployeeServiceImplSoapBindingImpl"/>
+      <parameter name="wsdlPortType" value="EmployeeServiceImpl"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation name="delete" qname="operNS:delete" xmlns:operNS="http://service.app.com" returnQName="retNS:deleteReturn" xmlns:retNS="http://service.app.com" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:id" xmlns:pns="http://service.app.com" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="getUser" qname="operNS:getUser" xmlns:operNS="http://service.app.com" returnQName="retNS:getUserReturn" xmlns:retNS="http://service.app.com" returnType="rtns:UserDetails" xmlns:rtns="http://dto.app.com" soapAction="" >
+        <parameter qname="pns:id" xmlns:pns="http://service.app.com" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="getUsers" qname="operNS:getUsers" xmlns:operNS="http://service.app.com" returnQName="retNS:getUsersReturn" xmlns:retNS="http://service.app.com" returnType="rtns:UserDetails" xmlns:rtns="http://dto.app.com" soapAction="" >
+      </operation>
+      <operation name="addUser" qname="operNS:addUser" xmlns:operNS="http://service.app.com" returnQName="retNS:addUserReturn" xmlns:retNS="http://service.app.com" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:user" xmlns:pns="http://service.app.com" type="tns:UserDetails" xmlns:tns="http://dto.app.com"/>
+      </operation>
+      <parameter name="allowedMethods" value="getUsers addUser getUser delete"/>
+
+      <typeMapping
+        xmlns:ns="http://dto.app.com"
+        qname="ns:UserDetails"
+        type="java:com.app.dto.UserDetails"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+  </service>
+</deployment>
