@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://service.app.com" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://service.app.com" xmlns:intf="http://service.app.com" xmlns:tns1="http://dto.app.com" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://service.app.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://dto.app.com"/>
+   <element name="getDepartment">
+    <complexType>
+     <sequence>
+      <element name="id" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getDepartmentResponse">
+    <complexType>
+     <sequence>
+      <element name="getDepartmentReturn" type="tns1:DepartmentDTO"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="addDepartment">
+    <complexType>
+     <sequence>
+      <element name="dto" type="tns1:DepartmentDTO"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="addDepartmentResponse">
+    <complexType>
+     <sequence>
+      <element name="addDepartmentReturn" type="xsd:boolean"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+  <schema elementFormDefault="qualified" targetNamespace="http://dto.app.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <complexType name="DepartmentDTO">
+    <sequence>
+     <element name="address" nillable="true" type="xsd:string"/>
+     <element name="departmentType" nillable="true" type="xsd:string"/>
+     <element name="id" nillable="true" type="xsd:int"/>
+     <element name="name" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="addDepartmentResponse">
+
+      <wsdl:part element="impl:addDepartmentResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="addDepartmentRequest">
+
+      <wsdl:part element="impl:addDepartment" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getDepartmentRequest">
+
+      <wsdl:part element="impl:getDepartment" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getDepartmentResponse">
+
+      <wsdl:part element="impl:getDepartmentResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="DepartmentServieImpl">
+
+      <wsdl:operation name="getDepartment">
+
+         <wsdl:input message="impl:getDepartmentRequest" name="getDepartmentRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getDepartmentResponse" name="getDepartmentResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addDepartment">
+
+         <wsdl:input message="impl:addDepartmentRequest" name="addDepartmentRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:addDepartmentResponse" name="addDepartmentResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="DepartmentServieImplSoapBinding" type="impl:DepartmentServieImpl">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="getDepartment">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getDepartmentRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getDepartmentResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addDepartment">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="addDepartmentRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="addDepartmentResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="DepartmentServieImplService">
+
+      <wsdl:port binding="impl:DepartmentServieImplSoapBinding" name="DepartmentServieImpl">
+
+         <wsdlsoap:address location="http://localhost:1100/jaxws-app/services/DepartmentServieImpl"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

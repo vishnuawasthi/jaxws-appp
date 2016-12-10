@@ -36,9 +36,4 @@
     <servlet-name>AdminServlet</servlet-name>
     <url-pattern>/servlet/AdminServlet</url-pattern>
   </servlet-mapping>
-  <!-- <listener>
-        <listener-class>
-                com.sun.xml.ws.transport.http.servlet.WSServletContextListener
-        </listener-class>
-    </listener> -->
 </web-app>

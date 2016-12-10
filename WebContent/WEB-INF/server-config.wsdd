@@ -7,8 +7,8 @@
   <ns1:parameter name="dotNetSoapEncFix" value="true"/>
   <ns1:parameter name="enableNamespacePrefixOptimization" value="false"/>
   <ns1:parameter name="sendXMLDeclaration" value="true"/>
-  <ns1:parameter name="sendXsiTypes" value="true"/>
   <ns1:parameter name="attachments.implementation" value="org.apache.axis.attachments.AttachmentsImpl"/>
+  <ns1:parameter name="sendXsiTypes" value="true"/>
   <ns1:requestFlow>
    <ns1:handler type="java:org.apache.axis.handlers.JWSHandler">
     <ns1:parameter name="scope" value="session"/>
@@ -34,11 +34,11 @@
    <ns1:parameter qname="ns6:user" type="ns7:UserDetails" xmlns:ns7="http://dto.app.com"/>
   </ns1:operation>
   <ns1:parameter name="allowedMethods" value="getUsers addUser getUser delete"/>
-  <ns1:parameter name="typeMappingVersion" value="1.2"/>
   <ns1:parameter name="wsdlPortType" value="EmployeeServiceImpl"/>
-  <ns1:parameter name="className" value="com.app.service.EmployeeServiceImpl"/>
-  <ns1:parameter name="wsdlServicePort" value="EmployeeServiceImpl"/>
+  <ns1:parameter name="typeMappingVersion" value="1.2"/>
   <ns1:parameter name="schemaQualified" value="http://service.app.com,http://dto.app.com"/>
+  <ns1:parameter name="wsdlServicePort" value="EmployeeServiceImpl"/>
+  <ns1:parameter name="className" value="com.app.service.EmployeeServiceImpl"/>
   <ns1:parameter name="wsdlTargetNamespace" value="http://service.app.com"/>
   <ns1:parameter name="wsdlServiceElement" value="EmployeeServiceImplService"/>
   <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns8:UserDetails" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:com.app.dto.UserDetails" xmlns:ns8="http://dto.app.com"/>
@@ -48,6 +48,23 @@
   <ns1:parameter name="enableRemoteAdmin" value="false"/>
   <ns1:parameter name="className" value="org.apache.axis.utils.Admin"/>
   <ns1:namespace>http://xml.apache.org/axis/wsdd/</ns1:namespace>
+ </ns1:service>
+ <ns1:service name="DepartmentServieImpl" provider="java:RPC" style="wrapped" use="literal">
+  <ns1:operation name="getDepartment" qname="ns9:getDepartment" returnQName="ns9:getDepartmentReturn" returnType="ns10:DepartmentDTO" soapAction="" xmlns:ns10="http://dto.app.com" xmlns:ns9="http://service.app.com">
+   <ns1:parameter qname="ns9:id" type="xsd:int" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  </ns1:operation>
+  <ns1:operation name="addDepartment" qname="ns11:addDepartment" returnQName="ns11:addDepartmentReturn" returnType="xsd:boolean" soapAction="" xmlns:ns11="http://service.app.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns11:dto" type="ns12:DepartmentDTO" xmlns:ns12="http://dto.app.com"/>
+  </ns1:operation>
+  <ns1:parameter name="allowedMethods" value="addDepartment getDepartment"/>
+  <ns1:parameter name="typeMappingVersion" value="1.2"/>
+  <ns1:parameter name="wsdlPortType" value="DepartmentServieImpl"/>
+  <ns1:parameter name="className" value="com.app.service.DepartmentServieImpl"/>
+  <ns1:parameter name="wsdlServicePort" value="DepartmentServieImpl"/>
+  <ns1:parameter name="schemaQualified" value="http://service.app.com,http://dto.app.com"/>
+  <ns1:parameter name="wsdlTargetNamespace" value="http://service.app.com"/>
+  <ns1:parameter name="wsdlServiceElement" value="DepartmentServieImplService"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns13:DepartmentDTO" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:com.app.dto.DepartmentDTO" xmlns:ns13="http://dto.app.com"/>
  </ns1:service>
  <ns1:service name="Version" provider="java:RPC">
   <ns1:parameter name="allowedMethods" value="getVersion"/>
